@@ -1,0 +1,7 @@
+{
+  "contactos": ["Nombre del contacto"],
+  "mensajes": [
+    "Mensaje principal a enviar",
+    "?"
+  ]
+}

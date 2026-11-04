@@ -6,12 +6,8 @@ const robot = require('robotjs');
     headless: false,
   });
 
-  const contactos = ["Nombre del contacto"];
-
-  const mensajes = [
-    "Mensaje principal a enviar",
-    "?"
-  ];
+  // Contactos y mensajes se leen de config.json (ignorado por git). Ver config.example.json
+  const { contactos, mensajes } = require('./config.json');
   
   const screenSize = robot.getScreenSize();
   const screenWidth = screenSize.width;
@@ -123,5 +119,5 @@ const robot = require('robotjs');
 
 })();
 
-//  para ejecutar: node --loader ts-node/esm spamWhatsapp.ts
+//  para ejecutar: copiar config.example.json a config.json, completarlo y correr: node spamWhatsapp.js
 //  ejecutar una vez e iniciar sesion en whatsapp, luego cerrar la ventana y volver a ejecutar el script para que use la sesion guardada

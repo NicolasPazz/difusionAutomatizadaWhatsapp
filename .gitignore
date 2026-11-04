@@ -22,3 +22,6 @@ out/
 build/
 
 .vscode/
+
+# config local con contactos y mensajes
+config.json
