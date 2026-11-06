@@ -1,13 +1,24 @@
 const { chromium } = require('playwright');
 const robot = require('robotjs');
 
+// Contactos y mensajes se leen de config.json (ignorado por git). Ver config.example.json
+let config;
+try {
+  config = require('./config.json');
+} catch (err) {
+  console.error('No se pudo leer config.json: copiá config.example.json a config.json y completalo.');
+  process.exit(1);
+}
+const { contactos, mensajes } = config;
+if (!Array.isArray(contactos) || contactos.length === 0 || !Array.isArray(mensajes) || mensajes.length < 2) {
+  console.error('config.json inválido: "contactos" necesita al menos un contacto y "mensajes" al menos dos mensajes.');
+  process.exit(1);
+}
+
 (async () => {
   const context = await chromium.launchPersistentContext('./whatsapp-session', {
     headless: false,
   });
-
-  // Contactos y mensajes se leen de config.json (ignorado por git). Ver config.example.json
-  const { contactos, mensajes } = require('./config.json');
   
   const screenSize = robot.getScreenSize();
   const screenWidth = screenSize.width;
