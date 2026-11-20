@@ -27,7 +27,7 @@ if (!Array.isArray(contactos) || contactos.length === 0 || !Array.isArray(mensaj
   const page = await context.newPage();
   await page.goto('https://web.whatsapp.com');
  
-  while(true) {   // Sacar este while para que no se repita infinitamente
+  while(true) {   // Con RUN_ONCE=true se ejecuta una sola vuelta
 
     for (const contacto of contactos) {
 
@@ -122,6 +122,11 @@ if (!Array.isArray(contactos) || contactos.length === 0 || !Array.isArray(mensaj
         console.log(`Mensaje enviado a ${contacto}`);
       }
 
+    }
+
+    if (process.env.RUN_ONCE === 'true') {
+      await context.close();
+      break;
     }
 
     await page.waitForTimeout(60*60*1000);

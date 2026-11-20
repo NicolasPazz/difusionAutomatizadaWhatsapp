@@ -30,4 +30,6 @@ Edit `config.json` (ignored by git) with the contacts and messages:
 node spamWhatsapp.js
 ```
 
+By default it repeats every hour. Set `RUN_ONCE=true` to go through the contacts once and exit.
+
 On the first run, scan the WhatsApp Web QR code and close the window. The session is saved in `whatsapp-session/` and reused on later runs.
